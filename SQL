@@ -1,0 +1,26 @@
+-- 1. TABLE: TRUCKS
+CREATE TABLE Trucks (
+    TruckID TEXT PRIMARY KEY,
+    Plate TEXT,
+    DriverName TEXT,
+    Capacity_Ton INTEGER
+);
+
+INSERT INTO Trucks VALUES ('T-1', '34ABC123', 'Ahmet Yilmaz', 25);
+INSERT INTO Trucks VALUES ('T-2', '35XYZ999', 'Mehmet Can', 20);
+INSERT INTO Trucks VALUES ('T-3', '06DEF456', 'Canan Kaya', 25);
+
+-- 2. TABLE: SHIPMENTS
+CREATE TABLE Shipments (
+    ShipmentID INTEGER PRIMARY KEY,
+    TruckID TEXT,
+    DestinationCity TEXT,
+    CargoWeight_Ton INTEGER
+);
+
+INSERT INTO Shipments VALUES (5001, 'T-1', 'Berlin', 22);
+INSERT INTO Shipments VALUES (5002, 'T-3', 'Paris', 24);
+INSERT INTO Shipments VALUES (5003, 'T-1', 'Londra', 18);
+SELECT Shipments.ShipmentID, Trucks.DriverName, Shipments.CargoWeight_Ton, Trucks.Capacity_Ton
+FROM Shipments
+INNER JOIN Trucks ON Shipments.TruckID = Trucks.TruckID;
